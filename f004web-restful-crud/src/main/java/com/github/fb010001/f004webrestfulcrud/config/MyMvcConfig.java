@@ -1,8 +1,10 @@
 package com.github.fb010001.f004webrestfulcrud.config;
 
+import com.github.fb010001.f004webrestfulcrud.component.MyLocalRsolver;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -34,5 +36,11 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
             }
         };
         return webMvcConfigurerAdapter;
+    }
+
+    //　重写的区域信息解析器注册到容器中
+    @Bean
+    public LocaleResolver localeResolver(){
+        return new MyLocalRsolver();
     }
 }
