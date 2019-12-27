@@ -18,6 +18,11 @@ import java.util.Map;
 @Controller
 public class WebController {
 
+    /*@RequestMapping({"/","index.html"})
+    public String index(){
+        return "index";
+    }*/
+
     @ResponseBody
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
     public String hello(){

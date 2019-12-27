@@ -820,7 +820,7 @@ java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --server.port=8087  --serv
 
     ```
 
-    ​
+    
 
 **==将 类路径下  META-INF/spring.factories 里面配置的所有EnableAutoConfiguration的值加入到了容器中；==**
 
@@ -1640,22 +1640,22 @@ Simple expressions:（表达式语法）
                 
                 ${session.foo}
             3）、内置的一些工具对象：
-#execInfo : information about the template being processed.
-#messages : methods for obtaining externalized messages inside variables expressions, in the same way as they would be obtained using #{…} syntax.
-#uris : methods for escaping parts of URLs/URIs
-#conversions : methods for executing the configured conversion service (if any).
-#dates : methods for java.util.Date objects: formatting, component extraction, etc.
-#calendars : analogous to #dates , but for java.util.Calendar objects.
-#numbers : methods for formatting numeric objects.
-#strings : methods for String objects: contains, startsWith, prepending/appending, etc.
-#objects : methods for objects in general.
-#bools : methods for boolean evaluation.
-#arrays : methods for arrays.
-#lists : methods for lists.
-#sets : methods for sets.
-#maps : methods for maps.
-#aggregates : methods for creating aggregates on arrays or collections.
-#ids : methods for dealing with id attributes that might be repeated (for example, as a result of an iteration).
+                #execInfo : information about the template being processed.
+                #messages : methods for obtaining externalized messages inside variables expressions, in the same way as they would be obtained using #{…} syntax.
+                #uris : methods for escaping parts of URLs/URIs
+                #conversions : methods for executing the configured conversion service (if any).
+                #dates : methods for java.util.Date objects: formatting, component extraction, etc.
+                #calendars : analogous to #dates , but for java.util.Calendar objects.
+                #numbers : methods for formatting numeric objects.
+                #strings : methods for String objects: contains, startsWith, prepending/appending, etc.
+                #objects : methods for objects in general.
+                #bools : methods for boolean evaluation.
+                #arrays : methods for arrays.
+                #lists : methods for lists.
+                #sets : methods for sets.
+                #maps : methods for maps.
+                #aggregates : methods for creating aggregates on arrays or collections.
+                #ids : methods for dealing with id attributes that might be repeated (for example, as a result of an iteration).
 
     Selection Variable Expressions: *{...}：选择表达式：和${}在功能上是一样；
     	补充：配合 th:object="${session.user}：
@@ -1718,7 +1718,7 @@ Spring Boot 自动配置好了SpringMVC
 
 - Custom `Favicon` support (see below).  favicon.ico
 
-  ​
+  
 
 - 自动注册了 of `Converter`, `GenericConverter`, `Formatter` beans.
 
@@ -1743,7 +1743,7 @@ Spring Boot 自动配置好了SpringMVC
 
     ==自己给容器中添加HttpMessageConverter，只需要将自己的组件注册容器中（@Bean,@Component）==
 
-    ​
+    
 
 - Automatic registration of `MessageCodesResolver` (see below).定义错误代码生成规则
 
