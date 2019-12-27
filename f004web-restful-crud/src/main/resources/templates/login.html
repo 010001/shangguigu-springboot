@@ -8,19 +8,23 @@
 		<title>Signin Template for Bootstrap</title>
 		<!-- Bootstrap core CSS -->
 		<!--css样式采用ｔｈ的引用方式，如果项目的访问地址 context-path 变了也没影响　-->
-		<link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.css}" rel="stylesheet">
+		<!--href="asserts/css/bootstrap.min.css"-->
+		<link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.css}" rel="stylesheet">
 		<!-- Custom styles for this template -->
-		<link href="asserts/css/signin.css" th:href="@{/asserts/css/signin.css}" rel="stylesheet">
+		<!--href="asserts/css/signin.css"-->
+		<link th:href="@{/asserts/css/signin.css}" rel="stylesheet">
 	</head>
 
 	<body class="text-center">
-		<form class="form-signin" action="dashboard.html">
+		<form class="form-signin" action="dashboard.html" th:action="@{/user/login}" method="post">
 			<img class="mb-4" th:src="@{/asserts/img/bootstrap-solid.svg}" src="asserts/img/bootstrap-solid.svg" alt="" width="72" height="72">
 			<h1 class="h3 mb-3 font-weight-normal" th:text="#{login.login}">Please sign in</h1>
+			<!--判断，有提示信息的时候展示提示信息-->
+			<p style="color: red" th:text="${msg}" th:if="${!#strings.isEmpty(msg)}"></p>
 			<label class="sr-only" th:text="#{login.username}">Username</label>
-			<input type="text" class="form-control" th:placeholder="#{login.username}" required="" autofocus="">
+			<input type="text" name="username" class="form-control" th:placeholder="#{login.username}" required="" autofocus="">
 			<label class="sr-only" th:text="#{login.password}">Password</label>
-			<input type="password" class="form-control" th:placeholder="#{login.password}" required="">
+			<input type="password" name="password" class="form-control" th:placeholder="#{login.password}" required="">
 			<div class="checkbox mb-3">
 				<label>
           		<input type="checkbox" value="remember-me"/> [[#{login.rememberme}]]

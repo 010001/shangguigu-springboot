@@ -1,11 +1,13 @@
 package com.github.fb010001.f004webrestfulcrud.config;
 
+import com.github.fb010001.f004webrestfulcrud.component.LoginHandlerInterceptor;
 import com.github.fb010001.f004webrestfulcrud.component.MyLocalRsolver;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -24,6 +26,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
     }
 
     //所有的ＷｅｂＭｖｃＣｏｎｆｉｇｕｒａｔｉｏｎ组件都会一起起作用
+    //视图映射
     @Bean
     public WebMvcConfigurerAdapter webMvcConfigurerAdapter(){
         WebMvcConfigurerAdapter webMvcConfigurerAdapter = new WebMvcConfigurerAdapter() {
@@ -33,6 +36,19 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
                 //super.addViewControllers(registry);
                 registry.addViewController("/").setViewName("login");
                 registry.addViewController("index.html").setViewName("login");
+                registry.addViewController("main.html").setViewName("dashboard");
+            }
+
+            //注册拦截器
+            @Override
+            public void addInterceptors(InterceptorRegistry registry) {
+                //super.addInterceptors(registry);
+                //过滤所有请求
+                //放行　"/","/index.html","/user/login"　三个请求
+                //springboot已经处理好静态资源映射，无需自己处理
+                registry.addInterceptor(new LoginHandlerInterceptor())
+                        .addPathPatterns("/**")
+                        .excludePathPatterns("/index.html","/","/user/login");
             }
         };
         return webMvcConfigurerAdapter;

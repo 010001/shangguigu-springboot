@@ -55,4 +55,9 @@ public class MyLocalRsolver implements LocaleResolver {
         }
         return locale;
     }
+
+    @Override
+    public void setLocale(HttpServletRequest request, HttpServletResponse response, Locale locale) {
+    }
+
 }
