@@ -35,7 +35,7 @@ public class EmployeeController {
         Map<String,Object> resultOps = new HashMap<>();
         resultOps.put("flag",true);
         resultOps.put("msg","查询成功");
-        resultOps.put("data",all);
+        resultOps.put("resData",all);
         model.addAllAttributes(resultOps);
         /**
          * thtmeleaf会自动拼接串
@@ -44,5 +44,10 @@ public class EmployeeController {
          */
         return "emp/list";
 
+    }
+
+    @GetMapping("/dashboard")
+    public String dashboard(){
+        return "dashboard";
     }
 }
