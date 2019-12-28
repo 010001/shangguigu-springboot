@@ -22,7 +22,7 @@ public class LoginController {
             @RequestParam("password") String password,
             Map<String,Object> map,
             HttpSession session){
-        if(MyStringUtils.isNotEmpty(username) && "123456".equalsIgnoreCase(password)){
+        if(MyStringUtils.isNotEmpty(username) && "111".equalsIgnoreCase(password)){
             //登录成功
             session.setAttribute("loginUser",username);
             // 为防止表单重复提交，登录成功后可以重定向到主页

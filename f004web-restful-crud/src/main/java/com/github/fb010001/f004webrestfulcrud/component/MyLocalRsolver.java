@@ -33,7 +33,6 @@ public class MyLocalRsolver implements LocaleResolver {
             zhLocaleStr.add("zh-CN");
             String contentLanguage = request.getHeader("Accept-Language");
             if(MyStringUtils.isNotEmpty(contentLanguage)){
-                System.out.println(contentLanguage);
                 String[] languages = contentLanguage.split(",");
                 if(languages.length > 0){
                     for (String language: languages
