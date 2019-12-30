@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  *@Date 19-12-27 下午4:54
  */
 public class LoginHandlerInterceptor implements HandlerInterceptor {
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Object loginUser = request.getSession().getAttribute("loginUser");

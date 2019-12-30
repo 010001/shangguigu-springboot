@@ -61,36 +61,36 @@
 			<!--<div th:replace="~{commons/bar :: #sidebar}"></div>-->
             <div th:replace="~{commons/bar::sidebar(activeUri='emps')}"></div>
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-
-					<h2>
-						<a th:href="@{/emp/add}" class="btn btn-success btn-sm">员工添加</a>
-					</h2>
-					<div class="table-responsive">
-						<table class="table table-striped table-sm">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>id</th>
-									<th>lastName</th>
-									<th>gender</th>
-									<th>email</th>
-									<th>department</th>
-									<th>birth</th>
-								</tr>
-							</thead>
-							<tbody>
-                                <tr th:each="emp:${resData}">
-                                    <td>#</td>
-                                    <td th:text="${emp.id}"></td>
-                                    <td>[[${emp.lastName}]]</td>
-                                    <td>[[${emp.gender == 1 ? '男' : '女'}]]</td>
-                                    <td th:text="${emp.email}"></td>
-                                    <td th:text="${emp.department}"></td>
-                                    <td th:text="${emp.birth}"></td>
-                                </tr>
-                            </tbody>
-						</table>
-					</div>
+					<form>
+						<div class="form-group">
+							<label for="exampleFormControlInput1">Email address</label>
+							<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlSelect1">Example select</label>
+							<select class="form-control" id="exampleFormControlSelect1">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlSelect2">Example multiple select</label>
+							<select multiple class="form-control" id="exampleFormControlSelect2">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlTextarea1">Example textarea</label>
+							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+						</div>
+					</form>
 				</main>
 			</div>
 		</div>
@@ -98,18 +98,18 @@
 		<!-- Bootstrap core JavaScript
     ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script type="text/javascript" th:src="@{asserts/js/jquery-3.2.1.slim.min.js}"></script>
-		<script type="text/javascript" th:src="@{asserts/js/popper.min.js}"></script>
-		<script type="text/javascript" th:src="@{asserts/js/bootstrap.min.js}"></script>
+		<script type="text/javascript" th:src="@{/static/asserts/js/jquery-3.2.1.slim.min.js}"></script>
+		<script type="text/javascript" th:src="@{/static/asserts/js/popper.min.js}"></script>
+		<script type="text/javascript" th:src="@{/static/asserts/js/bootstrap.min.js}"></script>
 
 		<!-- Icons -->
-		<script type="text/javascript" th:src="@{asserts/js/feather.min.js}"></script>
+		<script type="text/javascript" th:src="@{/static/asserts/js/feather.min.js}"></script>
 		<script>
 			feather.replace()
 		</script>
 
 		<!-- Graphs -->
-		<script type="text/javascript" th:src="@{asserts/js/Chart.min.js}"></script>
+		<script type="text/javascript" th:src="@{/static/asserts/js/Chart.min.js}"></script>
 		<script>
 			var ctx = document.getElementById("myChart");
 			var myChart = new Chart(ctx, {

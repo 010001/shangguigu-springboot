@@ -50,4 +50,13 @@ public class EmployeeController {
     public String dashboard(){
         return "dashboard";
     }
+
+    /**
+     * 跳转到员工添加页面
+     * @return
+     */
+    @GetMapping("/add")
+    public String toAddEmp(){
+        return "emp/add";
+    }
 }

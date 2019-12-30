@@ -46,7 +46,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
                 //springboot已经处理好静态资源映射，无需自己处理
                 registry.addInterceptor(new LoginHandlerInterceptor())
                         .addPathPatterns("/**")
-                        .excludePathPatterns("/index.html","/","/user/login","/**.css","/**.svg");
+                        .excludePathPatterns("/index.html","/","/user/login","/static/**");
                 //,"/**/*.css","/**/*.svg"
             }
 
@@ -54,7 +54,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
                 //配置静态资源文件路径
                 registry.addResourceHandler("/static/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/");
-                super.addResourceHandlers(registry);
+                //super.addResourceHandlers(registry);
             }
         };
         return webMvcConfigurerAdapter;
