@@ -11,7 +11,12 @@
         <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" th:href="@{http://getbootstrap.com/docs/4.0/examples/dashboard/#}">Sign out</a>
+                <!--<a class="nav-link" th:href="@{/user/logout}" methods="post">
+                    Sign out
+                </a>-->
+                <form class="nav-link" th:action="@{/user/logout}" method="post">
+                    <button class="nav-item text-nowrap" type="submit" th:text="#{login.logout}">Sign out</button>
+                </form>
             </li>
         </ul>
     </nav>

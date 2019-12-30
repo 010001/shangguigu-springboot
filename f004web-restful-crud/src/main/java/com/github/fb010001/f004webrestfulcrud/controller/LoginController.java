@@ -32,4 +32,9 @@ public class LoginController {
             return "login";
         }
     }
+    @PostMapping("/user/logout")
+    public String logout(HttpSession session){
+        session.setAttribute("loginUser","");
+        return "redirect:/";
+    }
 }

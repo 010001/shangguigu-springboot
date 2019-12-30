@@ -9,15 +9,16 @@
 		<!-- Bootstrap core CSS -->
 		<!--css样式采用ｔｈ的引用方式，如果项目的访问地址 context-path 变了也没影响　-->
 		<!--href="asserts/css/bootstrap.min.css"-->
-		<link th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
+		<!--<link th:href="@{/static/asserts/css/bootstrap.min.css}" rel="stylesheet">-->
+		<link th:href="@{/static/asserts/css/bootstrap.min.css}" rel="stylesheet">
 		<!-- Custom styles for this template -->
 		<!--href="asserts/css/signin.css"-->
-		<link th:href="@{/asserts/css/signin.css}" rel="stylesheet">
+		<link th:href="@{/static/asserts/css/signin.css}" rel="stylesheet">
 	</head>
 
 	<body class="text-center">
 		<form class="form-signin" action="dashboard.html" th:action="@{/user/login}" method="post">
-			<img class="mb-4" th:src="@{/asserts/img/bootstrap-solid.svg}" alt="" width="72" height="72">
+			<img class="mb-4" th:src="@{/static/asserts/img/bootstrap-solid.svg}" alt="" width="72" height="72">
 			<h1 class="h3 mb-3 font-weight-normal" th:text="#{login.login}">Please sign in</h1>
 			<!--判断，有提示信息的时候展示提示信息-->
 			<p style="color: red" th:text="${msg}" th:if="${!#strings.isEmpty(msg)}"></p>

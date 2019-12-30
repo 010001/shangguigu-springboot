@@ -5,11 +5,9 @@ import com.github.fb010001.f004webrestfulcrud.component.MyLocalRsolver;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 
 /***
  *@Title 使用WebMvcConfigurerAdapter　来扩展SpringMvc的功能
@@ -48,7 +46,15 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
                 //springboot已经处理好静态资源映射，无需自己处理
                 registry.addInterceptor(new LoginHandlerInterceptor())
                         .addPathPatterns("/**")
-                        .excludePathPatterns("/index.html","/","/user/login","/**.css");
+                        .excludePathPatterns("/index.html","/","/user/login","/**.css","/**.svg");
+                //,"/**/*.css","/**/*.svg"
+            }
+
+            @Override
+            public void addResourceHandlers(ResourceHandlerRegistry registry) {
+                //配置静态资源文件路径
+                registry.addResourceHandler("/static/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/");
+                super.addResourceHandlers(registry);
             }
         };
         return webMvcConfigurerAdapter;
