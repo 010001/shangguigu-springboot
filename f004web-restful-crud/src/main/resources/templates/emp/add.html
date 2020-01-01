@@ -61,35 +61,37 @@
 			<!--<div th:replace="~{commons/bar :: #sidebar}"></div>-->
             <div th:replace="~{commons/bar::sidebar(activeUri='emps')}"></div>
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-					<form>
+					<form action="/emp/add" method="post">
 						<div class="form-group">
-							<label for="exampleFormControlInput1">Email address</label>
-							<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+							<label>LastName</label>
+							<input type="text" class="form-control" placeholder="zhangsan" name="lastName">
 						</div>
 						<div class="form-group">
-							<label for="exampleFormControlSelect1">Example select</label>
-							<select class="form-control" id="exampleFormControlSelect1">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
+							<label>Email</label>
+							<input type="email" class="form-control" placeholder="zhangsan@atguigu.com" name="email">
+						</div>
+						<div class="form-group">
+							<label>Gender</label><br/>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="gender"  value="1">
+								<label class="form-check-label">男</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="gender"  value="0">
+								<label class="form-check-label">女</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>department</label>
+							<select class="form-control" name="department.id">
+								<option th:each="dept : ${depts}" th:value="${dept.id}">[[${dept.departmentName}]]</option>
 							</select>
 						</div>
 						<div class="form-group">
-							<label for="exampleFormControlSelect2">Example multiple select</label>
-							<select multiple class="form-control" id="exampleFormControlSelect2">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-							</select>
+							<label>Birth</label>
+							<input type="text" class="form-control" placeholder="2019/12/31" name="birth">
 						</div>
-						<div class="form-group">
-							<label for="exampleFormControlTextarea1">Example textarea</label>
-							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-						</div>
+						<button type="submit" class="btn btn-primary">添加</button>
 					</form>
 				</main>
 			</div>
