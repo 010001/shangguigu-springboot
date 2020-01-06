@@ -61,37 +61,45 @@
 			<!--<div th:replace="~{commons/bar :: #sidebar}"></div>-->
             <div th:replace="~{commons/bar::sidebar(activeUri='emps')}"></div>
 				<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+					<!--需要确认是修改还是添加，只有修改才回显数据-->
 					<form action="/emp/add" method="post">
+						<!--发送ｐｕｔ请求修改员工数据
+						１　ｓｐｒｉｎｇｍｖｃ中配置HiddenHttpMethodFilter
+						２　页面创建ｐｏｓｔ表单
+						３　创建一个ｉｎｐｕｔ项　name="_method" 值就是指定的请求方式-->
+
+						<input type="hidden" name="_method" value="put" th:if="${null != emp}">
+						<input type="hidden" name="id" th:if="${null != emp}" th:value="${emp.id}">
 						<div class="form-group">
 							<label>LastName</label>
-							<input type="text" class="form-control" placeholder="zhangsan" name="lastName">
+							<input type="text" class="form-control" placeholder="zhangsan" name="lastName" th:value="${null != emp} ? ${emp.lastName}">
 						</div>
 						<div class="form-group">
 							<label>Email</label>
-							<input type="email" class="form-control" placeholder="zhangsan@atguigu.com" name="email">
+							<input type="email" class="form-control" placeholder="zhangsan@atguigu.com" name="email" th:value="${null != emp} ? ${emp.email}">
 						</div>
 						<div class="form-group">
 							<label>Gender</label><br/>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="gender"  value="1">
+								<input class="form-check-input" type="radio" name="gender"  value="1" th:checked="${null != emp} ? ${emp.gender ==1}">
 								<label class="form-check-label">男</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="radio" name="gender"  value="0">
+								<input class="form-check-input" type="radio" name="gender"  value="0" th:checked="${null != emp} ? ${emp.gender == 0 }">
 								<label class="form-check-label">女</label>
 							</div>
 						</div>
 						<div class="form-group">
 							<label>department</label>
 							<select class="form-control" name="department.id">
-								<option th:each="dept : ${depts}" th:value="${dept.id}">[[${dept.departmentName}]]</option>
+								<option th:selected="${null != emp} ? ${emp.department.id == dept.id}" th:each="dept : ${depts}" th:value="${dept.id}">[[${dept.departmentName}]]</option>
 							</select>
 						</div>
 						<div class="form-group">
 							<label>Birth</label>
-							<input type="text" class="form-control" placeholder="2019/12/31" name="birth">
+							<input type="text" class="form-control" placeholder="2019/12/31" name="birth" th:value="${null != emp} ? ${#dates.format(emp.birth,'yyyy/MM/dd')}">
 						</div>
-						<button type="submit" class="btn btn-primary">添加</button>
+						<button type="submit" class="btn btn-primary" th:text="${null != emp}?'修改':'添加'">添加</button>
 					</form>
 				</main>
 			</div>

@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -69,6 +67,23 @@ public class EmployeeController {
     }
 
 
+    //跳转到修改页面,查出员工信息并回显
+    @GetMapping("/{id}")
+    public String toEditPage(@PathVariable("id") Integer empId,Model model){
+        //
+        Employee employee = employeeDao.get(empId);
+        model.addAttribute("emp",employee);
+
+        //页面显示所有部门列表
+        Collection<Department> departments = departmentDao.getDepartments();
+        model.addAttribute("depts",departments);
+
+        //回到修改页面
+        //add页面是修改　添加二合一页面
+        return "emp/add";
+    }
+
+
     /*业务逻辑编写*/
 
     @PostMapping("/add")
@@ -77,6 +92,29 @@ public class EmployeeController {
         employeeDao.save(employee);
         //redirect 重定向到一个地址　斜杠　/ 代表当前项目路径
         //forward 转发到一个地址
+        return "redirect:/emp/list";
+    }
+
+    /**
+     * 员工更新
+     * @param employee
+     * @return
+     */
+    @PutMapping
+    public String updateEmp(Employee employee){
+
+        System.out.println(employee);
+        return "redirect:/emp/list";
+    }
+
+    /**
+     * 员工删除
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/{id}")
+    public String deleteEmp(@PathVariable("id") Integer id){
+        employeeDao.delete(id);
         return "redirect:/emp/list";
     }
 

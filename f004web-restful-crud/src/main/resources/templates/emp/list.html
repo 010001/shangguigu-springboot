@@ -76,6 +76,7 @@
 									<th>email</th>
 									<th>department</th>
 									<th>birth</th>
+									<th>操作</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -86,30 +87,52 @@
                                     <td>[[${emp.gender == 1 ? '男' : '女'}]]</td>
                                     <td th:text="${emp.email}"></td>
                                     <td th:text="${emp.department}"></td>
-                                    <td th:text="${emp.birth}"></td>
+                                    <td th:text="${#dates.format(emp.birth,'yyyy/MM/dd')}"></td>
+									<td>
+										<a class="btn btn-sm btn-primary" th:href="@{/emp/{empId}(empId=${emp.id})}">编辑</a>
+										<a class="btn btn-sm btn-primary" th:href="@{/emp/}+${emp.id}">编辑</a>
+										<!--<form method="post" th:action="@{/emp/} + ${emp.id}" >
+											<input name="_method" value="delete" type="hidden" />
+											<button class="btn btn-sm btn-danger" type="submit">删除</button>
+										</form>-->
+										<!--attr 自定义参数-->
+										<button th:attr="delete_uri=@{/emp/}+${emp.id}" class="btn btn-sm btn-danger deleteBtn">删除</button>
+									</td>
                                 </tr>
                             </tbody>
 						</table>
 					</div>
 				</main>
+				<form id="deleteEpForm" method="post" >
+					<input name="_method" value="delete" type="hidden" />
+				</form>
 			</div>
 		</div>
+
+
 
 		<!-- Bootstrap core JavaScript
     ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script type="text/javascript" th:src="@{asserts/js/jquery-3.2.1.slim.min.js}"></script>
-		<script type="text/javascript" th:src="@{asserts/js/popper.min.js}"></script>
-		<script type="text/javascript" th:src="@{asserts/js/bootstrap.min.js}"></script>
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+		<script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/webjars/popper.js/1.15.0/popper.min.js}"></script>
+		<script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
 
 		<!-- Icons -->
-		<script type="text/javascript" th:src="@{asserts/js/feather.min.js}"></script>
+		<script type="text/javascript" th:src="@{/asserts/js/feather.min.js}"></script>
 		<script>
 			feather.replace()
 		</script>
+		<script>
+			$(".deleteBtn").click(function () {
+			    //　删除指定引用的值
+			    $("#deleteEpForm").attr("action",$(this).attr("delete_uri")).submit();
+				return false;
+            })
+		</script>
 
 		<!-- Graphs -->
-		<script type="text/javascript" th:src="@{asserts/js/Chart.min.js}"></script>
+		<script type="text/javascript" th:src="@{/asserts/js/Chart.min.js}"></script>
 		<script>
 			var ctx = document.getElementById("myChart");
 			var myChart = new Chart(ctx, {
