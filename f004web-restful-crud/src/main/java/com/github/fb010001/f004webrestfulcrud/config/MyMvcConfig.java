@@ -44,10 +44,9 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
                 //过滤所有请求
                 //放行　"/","/index.html","/user/login"　三个请求
                 //springboot已经处理好静态资源映射，无需自己处理
-                registry.addInterceptor(new LoginHandlerInterceptor())
+                /*registry.addInterceptor(new LoginHandlerInterceptor())
                         .addPathPatterns("/**")
-                        .excludePathPatterns("/index.html","/","/user/login","/static/**");
-                //,"/**/*.css","/**/*.svg"
+                        .excludePathPatterns("/index.html","/","/user/login","/static/**");*/
             }
 
             @Override
